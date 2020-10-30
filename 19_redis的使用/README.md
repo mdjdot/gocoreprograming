@@ -60,10 +60,10 @@
 		○ zrem name lisi // 移除元素
 
 # Golang 操作 redis
-	1. 安装redis包 gihub.com/garyburd/redigo/redis
-	2. 操作string
+1. 安装redis包 gihub.com/garyburd/redigo/redis
+2. 操作string
 	```
-    package main
+	package main
 	import (
 	    "fmt"
 	    "github.com/garyburd/redigo/redis"
@@ -92,9 +92,9 @@
 	}
 	```
 
-	3. 操作hash
+3. 操作hash
 	```
-    package main
+	package main
 	import (
 	    "fmt"
 	    "github.com/garyburd/redigo/redis"
@@ -120,16 +120,16 @@
 	}
 	```
 
-	4. 操作list
+4. 操作list
 	```
-    _, err := conn.Do("lpush", "heroList", "zhangsan ", 30, "lisi", 40)
+	_, err := conn.Do("lpush", "heroList", "zhangsan ", 30, "lisi", 40)
 	r, err := redis.String(conn.Do("rpop", "heroList"))
-    ```
+	```
 
-	5. Redis 链接池
-		a. 事先初始化移动数量的链接，放入链接池
-		b. Go 需要操作redis时，直接从redis链接池取出链接即可
-		c. 这样可以节省临时获取redis链接的时间，从而提高效率
+5. Redis 链接池
+	a. 事先初始化移动数量的链接，放入链接池
+	b. Go 需要操作redis时，直接从redis链接池取出链接即可
+	c. 这样可以节省临时获取redis链接的时间，从而提高效率
 	```
     package main
 	import (
@@ -167,15 +167,13 @@
 	```
 
 # 小练习
-	1. 存放一个student信息：
+1. 存放一个student信息：
 	```
     stu1 name 张三 age 30 score 80 address 北京
 	hmset stu1 name 张三 age 30 score 80 address 北京
 	```
 
-	2. 存放一个商品信息
-	包括商品名、价格、生产日期
-	完成对应的添加、删除操作
+2. 存放一个商品信息包括商品名、价格、生产日期完成对应的添加、删除操作
 	```
     sadd product pork  48 2019/12/23
 	smembers product

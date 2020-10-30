@@ -1,6 +1,6 @@
 # 项目需求分析
-	1. 模拟实现基于文本界面的客户信息管理软件
-	2. 该软件能够实现对客户对象的插入、修改和删除，并能够打印客户明细表
+1. 模拟实现基于文本界面的客户信息管理软件
+2. 该软件能够实现对客户对象的插入、修改和删除，并能够打印客户明细表
 
 # 项目的界面设计
 主菜单界面  
@@ -93,9 +93,9 @@
 ```
 
 # 代码实现
-	1. 程序架构图  
-	customerview <-> customerService -> customer
-	2. 实现显示主菜单和完成退出软件功能  
+1. 程序架构图  
+customerview <-> customerService -> customer
+2. 实现显示主菜单和完成退出软件功能  
 	```
     views/customerView.go
 	package main
@@ -132,7 +132,7 @@
 	}
 	```
 
-	3. 完成显示客户列表的功能
+3. 完成显示客户列表的功能
 	```
     models/customer.go
 	package models
@@ -202,7 +202,7 @@
 	}
 	```
 
-	4. 完成添加客户的功能
+4. 完成添加客户的功能
 	```
     services/customerService.go
 	package services
@@ -283,7 +283,7 @@
 	}
 	```
 
-	5. 完成修改客户的功能
+5. 完成修改客户的功能
 	```
     services/customerService.go
 	package services
@@ -403,7 +403,7 @@
 	}
 	```
 
-	6. 完成删除客户的功能
+6. 完成删除客户的功能
 	```
     services/customerService.go
 	package services
@@ -554,7 +554,7 @@
 	}
 	```
 
-	7. 完善退出确认功能
+7. 完善退出确认功能
 	```
     services/customerService.go
 	package services

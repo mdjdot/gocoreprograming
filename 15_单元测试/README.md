@@ -2,26 +2,27 @@
 testing测试框架，go test工具
 
 # 单元测试解决问题
-	1. 确保每个函数是可运行，并且运行结果是正确的
-	2. 确保代码的性能是好的
-	3. 及时发现程序设计或实现的逻辑错误
+1. 确保每个函数是可运行，并且运行结果是正确的
+2. 确保代码的性能是好的
+3. 及时发现程序设计或实现的逻辑错误
 
 # 单元测试总结
-	1. 测试文件名必须以 _test.go 结尾
-	2. 测试函数必须以 Test开头
-	3. t.Fatalf 格式化输出错误信息，并退出程序
-	t.Logf格式化输出日志，继续执行测试
-	4. go test -v 输出更多信息
-	
+1. 测试文件名必须以 _test.go 结尾
+2. 测试函数必须以 Test开头
+3. t.Fatalf 格式化输出错误信息，并退出程序
+t.Logf格式化输出日志，继续执行测试
+4. go test -v 输出更多信息
+	```
 	go test -timeout 300s git.windimg.com\giantthong\accounting\datasource -coverprofile=coverage  
 	go tool cover -html=coverage -o coverage.html
+	```
 
 
 # 小练习
-	1. 单元测试案例
-		1. 编写一个Monster结构体，字段Name，Age，Skill
-		2. 给Monster绑定方法Store，可以将一个Monster变量序列化后保存到文件中
-		3. 给Monster绑定方法ReStore，可以将一个序列化的Monster，从文件中读取，并反序列化为Monster对象，编写测试用例函数TestStore和TestRestore进行测试
+1. 单元测试案例
+	1. 编写一个Monster结构体，字段Name，Age，Skill
+	2. 给Monster绑定方法Store，可以将一个Monster变量序列化后保存到文件中
+	3. 给Monster绑定方法ReStore，可以将一个序列化的Monster，从文件中读取，并反序列化为Monster对象，编写测试用例函数TestStore和TestRestore进行测试
 	
 	./test.go
     ```

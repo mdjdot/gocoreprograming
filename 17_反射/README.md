@@ -25,7 +25,7 @@ func main() {
 ```
 
 # 小练习
-	1. 给出一个变量 var v float64 = 1.2，请使用反射类的到它的 reflect Value，然后获取对应的Type，Kind和值，并将reflect.Value转换成interface{}，再将interface{}转换成float64
+1. 给出一个变量 var v float64 = 1.2，请使用反射类的到它的 reflect Value，然后获取对应的Type，Kind和值，并将reflect.Value转换成interface{}，再将interface{}转换成float64
 	```
     package main
 	import (
@@ -54,7 +54,7 @@ func main() {
 	}
 	```
 
-	2. 使用反射来遍历结构体的字段，调用结构体的方法，并获取结构体标签的值
+2. 使用反射来遍历结构体的字段，调用结构体的方法，并获取结构体标签的值
 	```
     package main
 	import "fmt"
@@ -150,11 +150,11 @@ func main() {
 	}
 	```
 
-	3. 反射练习
-		a. 编写一个Cal结构体，有两个字段Num1和Num2
-		b. 方法GetSub(name string)
-		c. 使用反射遍历Cal结构体所有的字段信息
-		d. 使用反射机制完成对GetSub的调用，输出形式为“tom完成了剑法运算，8 - 3 = 5”
+3. 反射练习
+	a. 编写一个Cal结构体，有两个字段Num1和Num2  
+	b. 方法GetSub(name string)  
+	c. 使用反射遍历Cal结构体所有的字段信息  
+	d. 使用反射机制完成对GetSub的调用，输出形式为“tom完成了剑法运算，8 - 3 = 5”  
 	```
     package main
 	import (

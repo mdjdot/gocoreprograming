@@ -1,6 +1,6 @@
 # 需求：要求统计1-9000000000的数字中，那些是素数？
-	1. 传统方法，使用一个循环，循环判断各个数是不是素数
-	2. 使用并发或者并行的方式，将统计素数的任务分配给多个goroutine去完成
+1. 传统方法，使用一个循环，循环判断各个数是不是素数
+2. 使用并发或者并行的方式，将统计素数的任务分配给多个goroutine去完成
 	```
     package main
 	import "fmt"
@@ -36,72 +36,72 @@
     runtime.GOMAXPROCS(num) // Go1.8以后不用设置了，默认运行在多核上  
 
 # Goroutine 协程的特点
-	1. 有独立的栈空间
-	2. 共享程序堆空间
-	3. 调度由用户控制
-	4. 协程是轻量级的线程
+1. 有独立的栈空间
+2. 共享程序堆空间
+3. 调度由用户控制
+4. 协程是轻量级的线程
 
 # Goroutine 的调度模型
-	• MPG 模式
-		1. M：操作系统的主线程（是物理线程）
-		2. P：协程执行需要的上下文
-		3. G：协程
+- MPG 模式
+	1. M：操作系统的主线程（是物理线程）
+	2. P：协程执行需要的上下文
+	3. G：协程
 
 # Channel 管道
-• channel先进先出
-• channel线程安全，不需要加锁
-• channel是有类型的
-• chnnel必须先初始化后使用，make
-• channel中只能存放指定的数据类型
-• channel中数据放满后，继续放入 deadlock
-• channel中没有值时，取值 deadlock
-• channel关闭后，不能写数据，但可以读数据
-• 遍历channel前，先关闭channel，防止deadlock
-```
-package main
-import (
-    "errors"
-    "fmt"
-)
-func main() {
-    intChan := make(chan int, 3)
-    fmt.Printf("%+v %+v\n", intChan, &intChan)          // 0xc000096080 0xc00008e018
-    fmt.Printf("%+v %+v\n", len(intChan), cap(intChan)) // 0 3
-    intChan <- 10
-    intChan <- 20
-    intChan <- 30
-    fmt.Printf("%+v %+v\n", len(intChan), cap(intChan)) // 3 3
-    // intChan <- 40 // 超过管道容量 deadlock
-    fmt.Printf("%+v %+v\n", intChan, &intChan)   // 0xc000096080 0xc00008e018
-    fmt.Println(<-intChan, <-intChan, <-intChan) // 10 20 30 先进先出
-    // fmt.Println(<-intChan)                       // 管道中无值，取值 deadlock
-    allChan := make(chan interface{}, 5)
-    allChan <- 10
-    allChan <- "abc"
-    allChan <- 12.34
-    allChan <- errors.New("error string")
-    allChan <- struct{ Age int }{Age: 12}
-    // count := len(allChan)
-    // for i := 0; i < count; i++ {
-    //  fmt.Printf("%+v\n", <-allChan)
-    // }
-    close(allChan) // 遍历前不关闭 deadlock
-    for {
-        if a, ok := <-allChan; ok {
-            fmt.Printf("%+v\n", a)
-        } else {
-            break
-        }
-    }
-}
-```
+- channel先进先出
+- channel线程安全，不需要加锁
+- channel是有类型的
+- chnnel必须先初始化后使用，make
+- channel中只能存放指定的数据类型
+- channel中数据放满后，继续放入 deadlock
+- channel中没有值时，取值 deadlock
+- channel关闭后，不能写数据，但可以读数据
+- 遍历channel前，先关闭channel，防止deadlock
+	```
+	package main
+	import (
+	    "errors"
+	    "fmt"
+	)
+	func main() {
+	    intChan := make(chan int, 3)
+	    fmt.Printf("%+v %+v\n", intChan, &intChan)          // 0xc000096080 0xc00008e018
+	    fmt.Printf("%+v %+v\n", len(intChan), cap(intChan)) // 0 3
+	    intChan <- 10
+	    intChan <- 20
+	    intChan <- 30
+	    fmt.Printf("%+v %+v\n", len(intChan), cap(intChan)) // 3 3
+	    // intChan <- 40 // 超过管道容量 deadlock
+	    fmt.Printf("%+v %+v\n", intChan, &intChan)   // 0xc000096080 0xc00008e018
+	    fmt.Println(<-intChan, <-intChan, <-intChan) // 10 20 30 先进先出
+	    // fmt.Println(<-intChan)                       // 管道中无值，取值 deadlock
+	    allChan := make(chan interface{}, 5)
+	    allChan <- 10
+	    allChan <- "abc"
+	    allChan <- 12.34
+	    allChan <- errors.New("error string")
+	    allChan <- struct{ Age int }{Age: 12}
+	    // count := len(allChan)
+	    // for i := 0; i < count; i++ {
+	    //  fmt.Printf("%+v\n", <-allChan)
+	    // }
+	    close(allChan) // 遍历前不关闭 deadlock
+	    for {
+	        if a, ok := <-allChan; ok {
+	            fmt.Printf("%+v\n", a)
+	        } else {
+	            break
+	        }
+	    }
+	}
+	```
 
 
 
 # 需求：现在要计算1-200的各个数的阶乘，并且把各个数的阶乘放入到map中。最后显示出来，要求使用goroutine完成
-	1. 不用goroutine写法，数据太大会溢出
+1. 不用goroutine写法，数据太大会溢出
 	```
-    package main
+	package main
 	import "fmt"
 	func main() {
 	    maps := make(map[int]int)
@@ -117,11 +117,11 @@ func main() {
 	    fmt.Printf("%+v", maps)
 	}
 	```
-	
-	2. goroutine写法
-	资源竞争
+
+2. goroutine写法
+资源竞争
 	```
-    go run .\test.go
+	go run .\test.go
 	map[3:6 6:720 7:5040 9:362880 15:1307674368000 17:355687428096000 21:-4249290049419214848]
 	package main
 	import (
@@ -146,65 +146,65 @@ func main() {
 	}
 	```
 
-	3. 不同goroutine之间通信
-		1. 全局变量的互斥锁
-		2. 使用管道channel来解决
-		```
-        package main
-		import (
-		    "fmt"
-		    "sync"
-		    "time"
-		)
-		var maps = make(map[int]int)
-		var mux = sync.Mutex{}
-		func main() {
-		    for i := 1; i <= 20; i++ {
-		        go func(key int) {
-		            mux.Lock()
-		            maps[key] = func(n int) int {
-		                var result = 1
-		                for j := 1; j <= n; j++ {
-		                    result *= j
-		                }
-		                return result
-		            }(key)
-		            mux.Unlock()
-		        }(i)
-		    }
-		    time.Sleep(5 * time.Second)
-		    fmt.Printf("%+v", maps)
-		}
-		```
-        ```
-		package main
-		import (
-		    "fmt"
-		    "sync"
-		)
-		var maps = make(map[int]int)
-		var mux = sync.Mutex{}
-		var wg = sync.WaitGroup{}
-		func main() {
-		    wg.Add(20)
-		    for i := 1; i <= 20; i++ {
-		        go func(key int) {
-		            mux.Lock()
-		            maps[key] = func(n int) int {
-		                var result = 1
-		                for j := 1; j <= n; j++ {
-		                    result *= j
-		                }
-		                return result
-		            }(key)
-		            mux.Unlock()
-		            wg.Done()
-		        }(i)
-		    }
-		    wg.Wait()
-		    fmt.Printf("%+v", maps)
-		}
-		```
+3. 不同goroutine之间通信
+	1. 全局变量的互斥锁
+	2. 使用管道channel来解决
+	```
+	package main
+	import (
+	    "fmt"
+	    "sync"
+	    "time"
+	)
+	var maps = make(map[int]int)
+	var mux = sync.Mutex{}
+	func main() {
+	    for i := 1; i <= 20; i++ {
+	        go func(key int) {
+	            mux.Lock()
+	            maps[key] = func(n int) int {
+	                var result = 1
+	                for j := 1; j <= n; j++ {
+	                    result *= j
+	                }
+	                return result
+	            }(key)
+	            mux.Unlock()
+	        }(i)
+	    }
+	    time.Sleep(5 * time.Second)
+	    fmt.Printf("%+v", maps)
+	}
+	```
+	```
+	package main
+	import (
+	    "fmt"
+	    "sync"
+	)
+	var maps = make(map[int]int)
+	var mux = sync.Mutex{}
+	var wg = sync.WaitGroup{}
+	func main() {
+	    wg.Add(20)
+	    for i := 1; i <= 20; i++ {
+	        go func(key int) {
+	            mux.Lock()
+	            maps[key] = func(n int) int {
+	                var result = 1
+	                for j := 1; j <= n; j++ {
+	                    result *= j
+	                }
+	                return result
+	            }(key)
+	            mux.Unlock()
+	            wg.Done()
+	        }(i)
+	    }
+	    wg.Wait()
+	    fmt.Printf("%+v", maps)
+	}
+	```
 
 # 只读和只写 channel
 ```
@@ -287,7 +287,7 @@ func main() {
 
 
 # 小练习
-	1. 编写一个程序，在进程中开启一个goroutine，该协程每隔1秒输出“hello,world”，在进程中也每隔一秒输出“hello,golang”，输出10次后，退出程序
+1. 编写一个程序，在进程中开启一个goroutine，该协程每隔1秒输出“hello,world”，在进程中也每隔一秒输出“hello,golang”，输出10次后，退出程序
 	```
     package main
 	import (
@@ -308,10 +308,10 @@ func main() {
 	}
 	```
 
-	2. 应用实例
-		1. 开启一个writeData协程，相关到intChan中写入50个整数
-		2. 开启一个readData协程，从iniChan中读取writeData写入的数据
-		3. 主线程需要等待writeData和readData协程都完成工作才能退出
+2. 应用实例
+	1. 开启一个writeData协程，相关到intChan中写入50个整数
+	2. 开启一个readData协程，从iniChan中读取writeData写入的数据
+	3. 主线程需要等待writeData和readData协程都完成工作才能退出
 	```
     package main
 	import "fmt"
@@ -334,8 +334,8 @@ func main() {
 	}
 	```
 
-	3. 应用实例
-	要求统计1-200000的数字中，哪些是素数
+3. 应用实例  
+要求统计1-200000的数字中，哪些是素数
 	```
     package main
 	import "fmt"

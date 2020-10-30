@@ -7,7 +7,7 @@ map中的key是无序的
 删除key，delete(amap，key)  
 
 # 小练习
-	1. 演示一个value是map的map
+1. 演示一个value是map的map
 	我们要存放3个学生信息，每个学生有name和sex信息
 	```
     package main
@@ -28,7 +28,7 @@ map中的key是无序的
 	}
 	```
 
-	2. 演示一个map的切片
+2. 演示一个map的切片
 	使用一个map来记录monster的信息name和age，一个monster对应一个map，并且妖怪的个数可以动态的增加
 	```
     package main
@@ -48,7 +48,7 @@ map中的key是无序的
 	}
 	```
 	
-	3. 通过排序key对map进排序
+3. 通过排序key对map进排序
 	```
     package main
 	import (

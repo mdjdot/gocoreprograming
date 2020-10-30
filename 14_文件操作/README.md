@@ -84,16 +84,16 @@ func main() {
 ```
 
 # json
-	• Javascript object notation
-	• Golang --序列化--> json字符串 --网络传输--> 程序 --反序列化--> 其他语言
-	• json解析网站
-	https://www.json.cn/  
+- Javascript object notation
+- Golang --序列化--> json字符串 --网络传输--> 程序 --反序列化--> 其他语言
+- json解析网站
+https://www.json.cn/  
     ```
 	[{"name":"zhangsan","Age":12,"Gender":null},{"name":"zhangsan","Age":12,"Gender":null}]
     ```
 
 # 小练习
-	1. 创建一个新的文件，写入内容 5句“hello，Gardon”
+1. 创建一个新的文件，写入内容 5句“hello，Gardon”
 	```
     package main
 	import "os"
@@ -110,7 +110,7 @@ func main() {
 	}
 	```
 
-	2. 打开一个存在的文件，将原来的内容覆盖成新的内容10句，“你好，尚硅谷！”
+2. 打开一个存在的文件，将原来的内容覆盖成新的内容10句，“你好，尚硅谷！”
 	```
     package main
 	import "os"
@@ -126,7 +126,7 @@ func main() {
 	}
 	```
 
-	3. 打开一个文件，使用带缓存的方式写入5句。“你好，尚硅谷！”
+3. 打开一个文件，使用带缓存的方式写入5句。“你好，尚硅谷！”
 	```
     package main
 	import "os"
@@ -145,7 +145,7 @@ func main() {
 	}
 	```
 
-	4. 编写一个程序，将一个文件的内容，写入到另一个文件。
+4. 编写一个程序，将一个文件的内容，写入到另一个文件。
 	```
     package main
 	import "io/ioutil"
@@ -162,7 +162,7 @@ func main() {
 	}
 	```
 
-	5. 将一个文件拷贝到其他路径
+5. 将一个文件拷贝到其他路径
 	使用bufio 需要Flush，Flush需要在File Close之前
 	```
     package main
@@ -194,7 +194,7 @@ func main() {
 	}
     ```
 
-	6. 统计一个文件中含有的英文、数字、空格及其他字符数量
+6. 统计一个文件中含有的英文、数字、空格及其他字符数量
 	```
     package main
 	import (
@@ -230,7 +230,7 @@ func main() {
 	}
 	```
 
-	7. 序列化和反序列化实践 
+7. 序列化和反序列化实践 
 	```
     package main
 	import "encoding/json"
